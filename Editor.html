@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
+	<meta http-equiv="refresh" content="">
+	<title>Text Editor</title>
+	<style>
+		*{
+			margin: 0px;
+			padding: 0px;
+		}
+		#main-div
+		{
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			height: 100vh;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-image: url(https://cdn.vectorstock.com/i/1000x1000/91/29/abstract-background-in-flat-style-vector-22509129.webp);
+			background-repeat: no-repeat;
+			background-size: cover;
+			
+		}
+		#form-div{
+			height: 100%;
+			width: 100%;
+			display: flex;
+			justify-content:center;
+			align-items: center;
+			background-image:linear-gradient(to bottom,#065bbd,#288fd4,#6224c7);
+			}
+
+			#main-div div 
+		{
+			height: 500px;
+			width: 500px;
+			
+
+			color: white;
+			padding: 30px;
+			border: none;
+			border-radius: 20px;
+		}
+
+		#userText{
+			margin-left: 20px;
+			border-radius: 20px;
+			font-weight: bolder;
+			padding: 10px;
+			background-color: white;
+			font-size: 15px;
+			border: none;
+		}
+
+			h1{
+				padding-left: 160px;
+				padding-bottom: 10psx;
+				color: black;
+			}
+			#table1{
+				margin-left: 5px;
+				height: 180px;
+				width: 480px;
+/*				border: 2px solid black;*/
+
+			}
+		
+			.col2{
+				padding-left: 50px;
+			}
+			.row{
+				width: 50%;
+				padding-left: 50px;
+				padding-right: 10px;
+			}
+			.btn{
+				height: 40px;
+				width: 150px;
+				font-size: 15px;
+				font-weight: bolder;
+				font-family: helvetica;
+				border-radius: 20px;
+				background-image:linear-gradient(to bottom,#d8e63e,#9ba80a) ;
+
+			}
+			.btn:hover{
+				background-color: green;
+				box-shadow:  3px 3px 3px black;
+				color: white;
+			}
+			#last{
+				padding-left: 50px;
+				font-family: sans-serif;
+				font-weight: bolder;
+			}
+			#table2{
+				margin-top: 10px;
+			}
+			
+	</style>
+</head>
+<body >
+	<div id="main-div" > 
+		<div id="form-div">
+			<form>
+			<label for=""><h1>Enter a Text</h1></label>
+				<textarea
+				name="text"
+				id="userText"
+				cols="50"
+				rows="12" onchange="wordCount();"></textarea>
+				<br>
+				<table id="table1">
+					<tr>
+						<td class="row">
+							<button type="button"  class="btn" onclick="upperCase();">UPPERCASE</button>
+						</td>
+					
+					
+						<td class="col2">
+							<button type="button" class="btn" onclick="lowerCase();">LOWERCASE</button>
+						</td>
+					</tr>
+					<tr >
+						<td class="row">
+							<button class="btn" onclick="search1();">SEARCH</button>
+						</td>
+					
+						<td class="row">
+							<button type="button" class="btn" onclick="replace1();">Replace</button>
+						</td>
+					</tr>
+					</table>
+
+					<table id="table2">
+					<tr >
+						<td id="last">
+							<h3>text contains <span id="words"></span> words and <span id="character"></span> characters</h3>
+				</td>
+
+					</tr>
+	</table>
+				</form>
+			</div>
+	<script>
+				
+			let userText = document.getElementById("userText");
+			let word = document.getElementById('words');
+			word.innerHTML = '0';
+			let chars = document.getElementById('character');
+			
+			chars.innerHTML = '0';
+
+			function upperCase() {
+				userText.value = userText.value.toUpperCase();
+			}
+			function lowerCase() {
+				userText.value = userText.value.toLowerCase();
+			}
+
+			function wordCount(){
+				let wordArr = userText.value.split(' ').length;
+				word.innerHTML= wordArr;
+
+				let strlen = userText.value.length;
+				chars.innerHTML=strlen;
+
+			}
+			function search1(){
+				 let ch=prompt("Enter character to search");
+				 let p = userText.value.search(ch);
+				 alert("Found At : "+p);
+			}
+
+			function replace1(){
+				 let old = prompt("Enter character to replace");
+				 let newchar = prompt("Enter new character");
+				 let p = userText.value.replace(old,newchar);
+				 userText.innerHTML(p);
+				 
+
+			}
+	</script>		
+
+</body>
+</html>
